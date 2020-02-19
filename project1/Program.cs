@@ -1,4 +1,37 @@
-﻿using System;
+﻿/*
+ * Create a list with all of the player
+ * Print introduction for user
+ * While budget is under 95 million
+ *     Get input from user to select a player position from list by entering a # between 1-8
+     * If user inputs number x
+     *      Display available players with info from x position 
+     *      Get input from user for which player they want to pick
+     *     ?? While user input is Yes?? <--- where does this while loop go ??????
+     *      If user selects x player
+     *          Subtract the player's salary from $95 mil
+     *          Subtract the player's salary from $65 mil in a costEffective variable
+     *          Display the player's info to console so user can see
+     *          Is the player best, second best or 3rd best?
+     *          Ask if user would like to select another player (Y/N)
+     *          If user selects Yes and budget is under 95 million
+     *              Display available players
+     *              Get user input to pick player
+     *              Subtract player salary from 95 million .. 
+     *              Is the player best, second best or 3rd best? ... 
+     *                  If the salary is bigger than remaining budget
+     *                      Print error message that they must select a different player
+     *                      Display available players ....
+     *          If user selects Yes and budget is 84 mil or over
+     *              Print "You have exceeded your budget and do not have enough $ left to pick a player"
+     *              Display all draft picks 
+     *          If user selects no and budget is under 65 million and all players are within first 3 bests
+     *              Print message that states "Cost Effective"
+     *          If user selects no and budget is over 65 million
+     *              Display all draft picks 
+ *          
+ */
+
+using System;
 
 namespace project1
 {
@@ -6,7 +39,66 @@ namespace project1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            string[] names = { "Joe Burrow", "Tua Tagovailoa" };
+            string[] institutions = { "LSU", "Alabama", "Oregon" };
+            string[] positions = {"Quarterback","Running Back","Wide-Receiver" };
+            double[] salaries = {26400100, 20300100, 17420300 };
+            string[] ranks = { "The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"};
+
+           
+            // Use a loop to assign all 25 character data 
+            // the loop should be the length of the arrays 
+            // Loop should be 0-24 (25 long) 
+            Player name = new Player ( "Ben", "Inst", "Pos", 12, true, "best");
         }
-    }
-}
+    } // End of Program
+    class Player
+    {
+        public string Name;
+        public string Institution;
+        public string Position;
+        public double Salary;
+        public bool Availability;
+        public string Rank;
+
+        public Player(string Name, string Inst, string Pos, double Salary, bool Avail, string Rank)
+        {
+            this.Name = Name;
+            Inst = Institution;
+            Pos = Position;
+            Avail = Availability;
+            this.Rank = Rank;
+        }
+
+        public void determineBest (int count)
+        {
+            // Logic to determine The best, 1st best, 2nd best... etc
+            if (count == 1)
+            {
+                Rank = "The Best";
+            }
+
+            else if (count == 2)
+            {
+                Rank = "2nd Best";
+            }
+
+            else if (count == 3)
+            {
+                Rank = "3rd Best";
+            }
+
+            else if (count == 4)
+            {
+                Rank = "4th Best";
+            }
+
+            else if (count == 5)
+            {
+                Rank = "5th Best";
+            }
+
+        }
+    } // End of player class 
+}// End of namespace
