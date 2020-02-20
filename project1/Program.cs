@@ -27,11 +27,11 @@
      *          If user selects no and budget is under 65 million and all players are within first 3 bests
      *              Print message that states "Cost Effective"
      *          If user selects no and budget is over 65 million
-     *              Display all draft picks 
- *          
+     *              Display all draft picks        
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace project1
 {
@@ -40,17 +40,87 @@ namespace project1
         static void Main(string[] args)
         {
 
+            string[,] nameArray = { //populating data in the player object
+                                        {"Joe Burrow", "Tua Tagovailoa", 17420300, 13100145, 10300000},
+                                        {24500100, 19890200 , 18700800, 15000000, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5}
+                                   };
+
+            string [,] institutionArray = { //populating data in the player object
+                                            {26400100, 20300100, 17420300, 13100145, 10300000},
+                                            {24500100, 19890200 , 18700800, 15000000, 5},
+                                            {1, 2 ,3 , 4, 5},
+                                            {1, 2 ,3 , 4, 5},
+                                            {1, 2 ,3 , 4, 5},
+                                            {1, 2 ,3 , 4, 5},
+                                            {1, 2 ,3 , 4, 5},
+                                            {1, 2 ,3 , 4, 5}
+                                          };
+
+            string[,] positionAray = { //populating data in the player object
+                                        {"Quarterback", "Quarterback", "Quarterback", "Quarterback", "Quarterback"},
+                                        {"Running back", "Running back", "Running back", "Running back", "Running back"},
+                                        {"Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver"},
+                                        {"Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman"},
+                                        {"Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back"},
+                                        {"Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends"},
+                                        {"Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's"},
+                                        {"Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles"}
+                                     };
+
+            double[,] salaryArray = { //populating data in the player object
+                                        {26400100, 20300100, 17420300, 13100145, 10300000},
+                                        {24500100, 19890200 , 18700800, 15000000, 11600400},
+                                        {23400000, 21900300, 19300230, 13400230, 10000000},
+                                        {26200300, 22000000, 16000000, 18000000, 13000000},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5},
+                                        {1, 2 ,3 , 4, 5}
+                                    };
+
+
+            string[,] rankArray = { 
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
+                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"}
+                                  };
+
+
+            // Create new list to hold only player objects 
+            List<Player> playerList = new List<Player>();
+
             string[] names = { "Joe Burrow", "Tua Tagovailoa" };
             string[] institutions = { "LSU", "Alabama", "Oregon" };
             string[] positions = {"Quarterback","Running Back","Wide-Receiver" };
             double[] salaries = {26400100, 20300100, 17420300 };
             string[] ranks = { "The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"};
 
+            for (var r = 0; r <8; r++) // Outter loop
+            {
+                for (var c = 0; c < 8; c++) // Inner loop
+                {
+                    Player name = new Player(nameArray[r, c], institutionArray[r, c], positionAray [r, c], salaryArray[r, c],true, rankArray[r,c]);
+                    playerList.Add(name);
+                } // End of Inner Loop
+
+            } // End of Outter Loop
+
            
             // Use a loop to assign all 25 character data 
             // the loop should be the length of the arrays 
             // Loop should be 0-24 (25 long) 
-            Player name = new Player ( "Ben", "Inst", "Pos", 12, true, "best");
+            /*Player aPlayer = new Player ( "Ben", "Inst", "Pos", 12, true, "best");*/
         }
     } // End of Program
     class Player
