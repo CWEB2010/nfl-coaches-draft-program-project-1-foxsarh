@@ -106,9 +106,10 @@ namespace project1
             double[] salaries = {26400100, 20300100, 17420300 };
             string[] ranks = { "The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"};
 
-            for (var r = 0; r <8; r++) // Outter loop
+            // Use a loop to assign all player data to player objects 
+            for (var r = 0; r <8; r++) // Outter loop (r stands for Row)
             {
-                for (var c = 0; c < 8; c++) // Inner loop
+                for (var c = 0; c < 8; c++) // Inner loop (c stands for Column)
                 {
                     Player name = new Player(nameArray[r, c], institutionArray[r, c], positionAray [r, c], salaryArray[r, c],true, rankArray[r,c]);
                     playerList.Add(name);
@@ -116,8 +117,16 @@ namespace project1
 
             } // End of Outter Loop
 
-           
-            // Use a loop to assign all 25 character data 
+            // Create Welcome Message and Instructions \\
+            Console.WriteLine("Welcome to the NFL Draft!");
+            Console.WriteLine("You may pick any combination of players");
+            Console.WriteLine("Here are the Rules:");
+            Console.WriteLine("\t1. The total combined salary of all players cannot exceed your $95 million budget");
+            Console.WriteLine("\t2. You may pick up to 5 players");
+            Console.WriteLine("\t3. If all 5 of your players are within the top 3 --and--");
+            Console.WriteLine("\t\ttheir combined salaries are $65 mil or less,");
+            Console.WriteLine("\t\tyou will receive a special alert that your draft is Cost Effective!");
+            
             // the loop should be the length of the arrays 
             // Loop should be 0-24 (25 long) 
             /*Player aPlayer = new Player ( "Ben", "Inst", "Pos", 12, true, "best");*/
