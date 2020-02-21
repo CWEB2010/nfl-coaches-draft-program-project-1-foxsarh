@@ -40,7 +40,7 @@ namespace project1
         static void Main(string[] args)
         {
 
-            string[,] nameArray = { //populating data in the player object
+            /*string[,] nameArray = { //populating data in the player object
                                         {"Joe Burrow", "Tua Tagovailoa", 17420300, 13100145, 10300000},
                                         {24500100, 19890200 , 18700800, 15000000, 5},
                                         {1, 2 ,3 , 4, 5},
@@ -94,11 +94,19 @@ namespace project1
                                     {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
                                     {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
                                     {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"}
-                                  };
+                                  }; */
+            string[,] rosterArray =
+            {
+                {"Joe Burrow", "LSU","26400100","Quaterback","1" },
+                {"Tua Tagovailoa", "Alabama","20300100", "Quaterback","2" },
+                {"Justin Herbet", "Oregon","17420300", "Quaterback", "3" },
+                {"Jordan Love","Utah St", "13100145","Quaterback","4"}
 
+            };
 
             // Create new list to hold only player objects 
             List<Player> playerList = new List<Player>();
+            List<Player> chosenPlayers = new List<Player>();
 
             string[] names = { "Joe Burrow", "Tua Tagovailoa" };
             string[] institutions = { "LSU", "Alabama", "Oregon" };
