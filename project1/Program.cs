@@ -42,69 +42,6 @@ namespace project1
         static void Main(string[] args)
         {
 
-            /*string[,] nameArray = { //populating data in the player object
-                                        {"Joe Burrow", "Tua Tagovailoa", 17420300, 13100145, 10300000},
-                                        {24500100, 19890200 , 18700800, 15000000, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5}
-                                   };
-
-            string [,] institutionArray = { //populating data in the player object
-                                            {26400100, 20300100, 17420300, 13100145, 10300000},
-                                            {24500100, 19890200 , 18700800, 15000000, 5},
-                                            {1, 2 ,3 , 4, 5},
-                                            {1, 2 ,3 , 4, 5},
-                                            {1, 2 ,3 , 4, 5},
-                                            {1, 2 ,3 , 4, 5},
-                                            {1, 2 ,3 , 4, 5},
-                                            {1, 2 ,3 , 4, 5}
-                                          };
-
-            string[,] positionAray = { //populating data in the player object
-                                        {"Quarterback", "Quarterback", "Quarterback", "Quarterback", "Quarterback"},
-                                        {"Running back", "Running back", "Running back", "Running back", "Running back"},
-                                        {"Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver"},
-                                        {"Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman"},
-                                        {"Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back"},
-                                        {"Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends"},
-                                        {"Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's"},
-                                        {"Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles"}
-                                     };
-
-            double[,] salaryArray = { //populating data in the player object
-                                        {26400100, 20300100, 17420300, 13100145, 10300000},
-                                        {24500100, 19890200 , 18700800, 15000000, 11600400},
-                                        {23400000, 21900300, 19300230, 13400230, 10000000},
-                                        {26200300, 22000000, 16000000, 18000000, 13000000},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5},
-                                        {1, 2 ,3 , 4, 5}
-                                    };
-
-
-            string[,] rankArray = { 
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"},
-                                    {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"}
-                                  }; */
-            //string[,] rosterArray =
-            //{
-            //    {"Joe Burrow", "LSU","Quarterback", "26400100","the best" },
-            //    {"Tua Tagovailoa", "Alabama", "Quarterback", "20300100","the 2nd best" },
-            //    {"Justin Herbet", "Oregon", "Quarterback", "17420300", "the 4th best" },
-            //    {"Jordan Love","Utah St", "Quarterback", "13100145","the 5th best"}
-
-            //};
 
             Console.WriteLine("Welcome to the NFL Draft!");
             Console.WriteLine("You may pick any combination of players");
@@ -112,59 +49,105 @@ namespace project1
             Console.WriteLine("\t1. The total combined salary of all players cannot exceed your $95 million budget");
             Console.WriteLine("\t2. You may pick up to 5 players");
             Console.WriteLine("\t3. If all 5 of your players are within the top 3 --and--");
-            Console.WriteLine("\t\ttheir combined salaries are $65 mil or less,");
-            Console.WriteLine("\t\tyou will receive a special alert that your draft is Cost Effective!");
+            Console.WriteLine("\t   their combined salaries are $65 mil or less,");
+            Console.WriteLine("\t   you will receive a special alert that your draft is Cost Effective!");
+
+            //Declarations
+
+            ////List Declarations
+            List<Player> chosenPlayers = new List<Player>();
 
             // Create new list to hold only player objects 
             List<Player> playerList = new List<Player>()
+
+
             {
                 new Player("Joe Burrow", "LSU","Quarterback", 26400100, true, "the best"),
                 new Player("Tua Tagovailoa", "Alabama", "Quarterback", 20300100, true,"the 2nd best"),
                 new Player("Justin Herbet", "Oregon", "Quarterback", 17420300, true, "the 4th best" )
             };
-            List<Player> chosenPlayers = new List<Player>();
+
 
             //Output the list
             foreach (Player aPlayer in playerList)
             {
-                Console.WriteLine(aPlayer.Name, aPlayer.Institution, aPlayer.Salary, aPlayer.Rank);
+                Console.WriteLine(aPlayer.Name, aPlayer.Institution, aPlayer.Position, aPlayer.Salary, aPlayer.Rank);
             }
 
             string position = "";
 
             //User input for position.
-            Console.WriteLine("Please enter position: \n 1.Quarterback\n2.Running Back\n3. Wide Receiver\n");
+            Console.WriteLine("Please enter position: \n1. Quarterback\n2. Running Back\n3. Wide Receiver\n");
             int positionNumber = Convert.ToInt32(Console.ReadLine());
 
-            if( positionNumber == 1)
+            //Exception Handling
+            while (positionNumber == 1 || positionNumber == 2 || positionNumber == 3 || positionNumber == 4 || positionNumber == 5)
             {
-                position = "Quarterback";
-            }
-            else if(positionNumber == 2)
-            {
-                position = "Running Back";
+                if (positionNumber == 1)
+                {
+                    position = "Quarterback";
+                    break;
+                }
+                else if (positionNumber == 2)
+                {
+                    position = "Running Back";
+                    break;
 
-            }else if(positionNumber == 3)
+                }
+                else if (positionNumber == 3)
+                {
+                    position = "Wide Receiver";
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Selection, please try again & enter a number between 1 and 5");
+                }
+
+            } // end while loop
+
+            string userRanking = "";
+
+            Console.WriteLine("Please enter ranking: \n1. The Best\n2. 2nd Best\n3. 3rd Best\n4. 4th Best\n5. 5th best"); 
+            int rankingNumber = Convert.ToInt32(Console.ReadLine());
+
+            if (rankingNumber == 1)
             {
-                position = "Wide Receiver";
+                userRanking = "the best";
             }
+            else if (rankingNumber == 2)
+            {
+                userRanking = "the 2nd best";
+
+            }
+            else if (rankingNumber == 3)
+            {
+                userRanking = "the 3rd best";
+            }
+
+            else if(rankingNumber == 4)
+            {
+                userRanking = "the 4th best";
+            }
+
+            else if(rankingNumber == 5)
+            {
+                userRanking = "the 5th best";
+            }
+
             else
             {
                 Console.WriteLine("Invalid Selection");
             }
 
-            //Console.WriteLine("Please enter Rank: \n 1.The Best \n2.The Second Best \n3. The third Best\n");
-            //selection 
-            string selection = "the best";
-
-            Player selectedPlayer;
+            //Player selectedPlayer;
             //Determine users pick
-            /**foreach (Player aPlayer in playerList)
+            /*foreach (Player aPlayer in playerList)
             {
                if((aPlayer.Position == position)  && (aPlayer.Rank == selection))
                 {
                     chosenPlayers.Add(aPlayer);
-
+                    //chosenPlayers.Remove(playerList);
                    
                    
                 }
@@ -172,71 +155,45 @@ namespace project1
             }**/
 
             for (var i = playerList.Count - 1; i >= 0; i--)
-            {
-                if (playerList[i].Position.Contains(position) && playerList[i].Rank == selection)
+                if (playerList[i].Position.Contains(position) && playerList[i].Rank == userRanking)
                 {
                     chosenPlayers.Add(playerList[i]);
                     playerList.RemoveAt(i);
+                    
                 }
-            }
 
 
 
 
-
+            //Clear Console of previous data for usability 
             Console.Clear();
             //output all players still remaining
             Console.WriteLine("These are the players that are availabe to select:");
+            playerList.ForEach(x => Console.WriteLine(x.ToString()));
+
             foreach (Player aPlayer in playerList)
             {
                 Console.WriteLine(aPlayer.Name, aPlayer.Institution, aPlayer.Salary, aPlayer.Rank);
             }
 
+            //Formatting so it is easier to read 
+            Console.WriteLine();
+
             //Show players who have been selected
             Console.WriteLine("These are the players you have selected");
             foreach (Player aPlayer in chosenPlayers)
             {
-                Console.WriteLine(aPlayer.Name, aPlayer.Institution, aPlayer.Salary, aPlayer.Rank);
+                Console.WriteLine(aPlayer.Name + aPlayer.Institution, aPlayer.Salary, aPlayer.Rank);
             }
 
 
-            /*string[] names = { "Joe Burrow", "Tua Tagovailoa" };
-            string[] institutions = { "LSU", "Alabama", "Oregon" };
-            string[] positions = {"Quarterback","Running Back","Wide-Receiver" };
-            double[] salaries = {26400100, 20300100, 17420300 };
-            string[] ranks = { "The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"};
-            */
 
-            // Use a loop to assign all player data to player objects 
-            //for (var r = 0; r <=4; r++) // Outter loop (r stands for Row)
-            //{
-            //    for (var c = 0; c <=4; c++) // Inner loop (c stands for Column)
-            //    {
-            //        Player name = new Player(nameArray[r, c], institutionArray[r, c], positionAray [r, c], salaryArray[r, c],true, rankArray[r,c]);
-            //        Player name = new Player(rosterArray[r, c], rosterArray[r, c], rosterArray[r, c], Convert.ToDouble(rosterArray[r, c]), true, rosterArray[r, c]);
-            //        playerList.Add(name);
-            //    } // End of Inner Loop
-
-            //} // End of Outter Loop
-
-            /*foreach (Player aPlayer in playerList)
-            {
-                Console.WriteLine(aPlayer.Name, aPlayer.Institution, aPlayer.Salary, aPlayer.Rank);
-            }*/
-
-            // Create Welcome Message and Instructions \\
-            //Console.WriteLine("Welcome to the NFL Draft!");
-            //Console.WriteLine("You may pick any combination of players");
-            //Console.WriteLine("Here are the Rules:");
-            //Console.WriteLine("\t1. The total combined salary of all players cannot exceed your $95 million budget");
-            //Console.WriteLine("\t2. You may pick up to 5 players");
-            //Console.WriteLine("\t3. If all 5 of your players are within the top 3 --and--");
-            //Console.WriteLine("\t\ttheir combined salaries are $65 mil or less,");
-            //Console.WriteLine("\t\tyou will receive a special alert that your draft is Cost Effective!");
-
+            //Reprint instructional menu for user 
             //User input for position.
-            Console.WriteLine("1.Quarterback\n2.Running Back\n3. Wide Receiver\n");
-            
+            Console.WriteLine("\n1. Quarterback\n2. Running Back\n3. Wide Receiver\n");
+
+
+
             // the loop should be the length of the arrays 
             // Loop should be 0-24 (25 long) 
             /*Player aPlayer = new Player ( "Ben", "Inst", "Pos", 12, true, "best");*/
@@ -245,20 +202,25 @@ namespace project1
     class Player
     {
         public string Name;
-        public string Institution;
+        public string Institution { get; set; }
         public string Position { get; set; }
         public double Salary;
         public bool Availability;
         public string Rank;
 
-        public Player(string Name, string Inst, string Pos, double Salary, bool Avail, string Rank)
+        public Player(string Name, string Institution, string Position, double Salary, bool Availability, string Rank)
         {
             this.Name = Name;
-            this.Institution = Inst;
-            Position = Pos;
+            this.Institution = Institution;
+            this.Position = Position;
             this.Salary = Salary;
-            Availability = Avail;
+            this.Availability = Availability;
             this.Rank = Rank;
+        }
+
+        public override string ToString()
+        {
+            return String.Format(Position + " | " + Name + " | " + Institution + " | "  +  Salary.ToString("c") + " | " + Rank);
         }
 
         public void determineBest (int count)
