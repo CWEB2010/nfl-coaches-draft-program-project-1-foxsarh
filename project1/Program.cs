@@ -48,7 +48,7 @@ namespace project1
             List<Player> costEffectiveList;
             ConsoleKey sentinelValue = ConsoleKey.Enter;
             ConsoleKey userInput;
-            double budget = 95000000;
+            long budget = 95000000;
             //double draftMoney = 95000000;
 
 
@@ -83,9 +83,46 @@ namespace project1
 
 
                 {
-                    new Player("Joe Burrow", "LSU","Quarterback", 26400100, true, "the best"),
-                    new Player("Tua Tagovailoa", "Alabama", "Quarterback", 20300100, true,"the 2nd best"),
-                    new Player("Justin Herbet", "Oregon", "Quarterback", 17420300, true, "the 4th best" )
+                    new Player("Joe Burrow", "LSU","Quarterback", 26400100, true, "The Best"),
+                    new Player("Tua Tagovailoa", "Alabama", "Quarterback", 20300100, true,"The 2nd Best"),
+                    new Player("Justin Herbet", "Oregon", "Quarterback", 17420300, true, "The 3rd Best" ),
+                    new Player("Jordan Love","Utah St","Quarterback", 13100145, true, "The 4th Best"),
+                    new Player("Jake Fromm","Georgia","Quarterback", 10300000, true, "The 5th Best" ),
+                    new Player("D,Andre Swift","Georgia","Running Back", 24500100, true, "The Best"),
+                    new Player("Jonathan Taylor","Wiscosnsin","Running Back", 19890200, true, "The 2nd Best" ),
+                    new Player("J.K. Dobbins","Ohio St","Running Back", 18700800, true,"The 3rd Best" ),
+                    new Player("Zack Moss","Utah","Running Back", 15000000, true, "The 4th Best" ),
+                    new Player("Cam Akers","Florida St","Running Back", 11600400, true, "The 5th Best" ),
+                    new Player("CeeDee Lamb","Oklahoma","Wide Receiver", 23400000, true, "The Best" ),
+                    new Player("Jerry Jeudy","Alabama","Wide Receiver", 21900300, true, "The 2nd Best" ),
+                    new Player("Tee Higgins","Clemson","Wide Receiver", 19300230, true, "The 3rd Best" ),
+                    new Player("Henry Rugs III","Alabama","Wide Receiver", 13400230, true, "The 4th Best" ),
+                    new Player("Tyler Johnson","Minnesota","Wide Receiver", 10000000, true, "The 5th Best" ),
+                    new Player("Chase Young","Ohio St","Defensive Lineman", 26200300, true, "The Best" ),
+                    new Player("Derrick Brown","Auburn","Defensive Lineman", 22000000, true, "The 2nd Best" ),
+                    new Player("A.J. Epenesa","Iowa","Defensive Lineman", 16000000, true, "The 3rd Best" ),
+                    new Player("Javon Kinlaw","So. Carolina","Defensive Lineman", 18000000, true, "The 4th Best" ),
+                    new Player("Yetur Gross-Matos","Penn St","Defensive Lineman", 13000000, true, "The 5th Best" ),
+                    new Player("Jeff Pkudah","Ohio St","Defensive-Back", 24000000, true, "The Best" ),
+                    new Player("Grant Delpit","LSU","Defensive-Back", 22500249, true, "The 2nd Best" ),
+                    new Player("Kristian Fulton","LSU","Defensive-Back", 20000100, true, "The 3rd Best" ),
+                    new Player("Xavier McKinney","Alabama","Defensive-Back", 16000200, true, "The 4th Best" ),
+                    new Player("CJ Henderson","Florida","Defensive-Back", 11899999, true, "The 5th Best" ),
+                    new Player("Cole Kmet","Notre Dame","Tight Ends", 27800900, true, "The Best" ),
+                    new Player("Brycen Hopkins","Purdue","Tight Ends", 21000800, true, "The 2nd Best" ),
+                    new Player("Hunter Bryant","Washington","Tight Ends", 17499233, true, "The 3rd Best" ),
+                    new Player("Jared Pinkney","Vanderbilt","Tight Ends", 27900200, true, "The 4th Best" ),
+                    new Player("Jacob Breeland","Oregon","Tight Ends", 14900333, true, "The 5th Best" ),
+                    new Player("Isaiah Simmons","Clemson","Line-Backer's", 22900300, true, "The Best" ),
+                    new Player("Kenneth Murray","Oklahoma","Line-Backer's", 1900590, true, "The 2nd Best" ),
+                    new Player("Zack Baun","Wisconsin","Line-Backer's", 18000222, true, "The 3rd Best" ),
+                    new Player("Akeem Davis-Gaither","App St","Line-Backer's", 12999999, true, "The 4th Best" ),
+                    new Player("Troy Dye","Oregon","Line-Backer's", 10000100, true, "The 5th Best" ),
+                    new Player("Jedrick Wills Jr","Alabama","Offensive Tackles", 23000000, true, "The Best" ),
+                    new Player("Andrew Thomas","Georgia","Offensive Tackles", 20000000, true, "The 2nd Best" ),
+                    new Player("Tristan Wirfs","Iowa","Offensive Tackles", 19400000, true, "The 3rd Best" ),
+                    new Player("Tyler Biadasz","Wisconsin","Offensive Tackles", 16200700, true, "The 4th Best" ),
+                    new Player("Mekhi Becton","Louisville","Offensive Tackles", 15900000, true, "The 5th Best" )
                 };
 
                 //Output the list of players
@@ -134,57 +171,64 @@ namespace project1
 
                     if (rankingNumber == 1)
                     {
-                        userRanking = "the best";
+                        userRanking = "The Best";
                     }
                     else if (rankingNumber == 2)
                     {
-                        userRanking = "the 2nd best";
+                        userRanking = "The 2nd Best";
 
                     }
                     else if (rankingNumber == 3)
                     {
-                        userRanking = "the 3rd best";
+                        userRanking = "The 3rd Best";
                     }
 
                     else if (rankingNumber == 4)
                     {
-                        userRanking = "the 4th best";
+                        userRanking = "The 4th Best";
                     }
 
                     else if (rankingNumber == 5)
                     {
-                        userRanking = "the 5th best";
+                        userRanking = "The 5th Best";
                     }
 
                     else
                     {
                         Console.WriteLine("Invalid Selection");
                     }
-                    Console.Clear();
-                    //While loop go here?? but what for??
 
+
+                    Console.Clear();
 
                         //Logic to determine who user picked
                         for (var i = playerList.Count - 1; i >= 0; i--)
                             if (playerList[i].Position.Contains(position) && playerList[i].Rank == userRanking)
                             {
                                 budget = budget - playerList[i].Salary;
+                                long remainingBudget = 95000000 - budget;
 
                             if (playerList[i].Availability == true)
                                 {
-                                    playerList[i].Availability = false;
-                                    Console.WriteLine("\nGood pick! This is the player you have chosen:"); 
-                                    Console.WriteLine(playerList[i].ToString());
-                                    Console.WriteLine("\nYour remaining budget is: " + budget.ToString("c"));
-                                    chosenPlayers.Add(playerList[i]);
-                                    //playerList.RemoveAt(i);
-                                    
 
                                     if (budget <= 0)
                                         {
-                                            Console.WriteLine("Oops! You have exceeded your budget! Please select a less expensive Player.");
+                                            Console.WriteLine("You have exceeded your budget! Please select a less expensive player.");
+                                            Console.WriteLine();
+
                                         }
 
+                                    else
+                                    {
+                                        playerList[i].Availability = false;
+                                        Console.WriteLine("\nThis is the player you have selected:");
+                                        Console.WriteLine(playerList[i].ToString());
+
+                                        chosenPlayers.Add(playerList[i]);
+                                        //playerList.RemoveAt(i);
+                                        Console.WriteLine("\nYour remaining budget is: " + budget.ToString("c"));
+                                        Console.WriteLine("You have spent " + remainingBudget.ToString("C") + " of your total budget");
+                                }
                                 }
 
 
@@ -265,11 +309,11 @@ namespace project1
         public string Name;
         public string Institution { get; set; }
         public string Position { get; set; }
-        public double Salary;
+        public long Salary;
         public bool Availability;
         public string Rank;
 
-        public Player(string Name, string Institution, string Position, double Salary, bool Availability, string Rank)
+        public Player(string Name, string Institution, string Position, long Salary, bool Availability, string Rank)
         {
             this.Name = Name;
             this.Institution = Institution;
