@@ -113,11 +113,11 @@ namespace project1
                     new Player("Hunter Bryant","Washington","Tight Ends", 17499233, true, "The 3rd Best" ),
                     new Player("Jared Pinkney","Vanderbilt","Tight Ends", 27900200, true, "The 4th Best" ),
                     new Player("Jacob Breeland","Oregon","Tight Ends", 14900333, true, "The 5th Best" ),
-                    new Player("Isaiah Simmons","Clemson","Line-Backer's", 22900300, true, "The Best" ),
-                    new Player("Kenneth Murray","Oklahoma","Line-Backer's", 1900590, true, "The 2nd Best" ),
-                    new Player("Zack Baun","Wisconsin","Line-Backer's", 18000222, true, "The 3rd Best" ),
-                    new Player("Akeem Davis-Gaither","App St","Line-Backer's", 12999999, true, "The 4th Best" ),
-                    new Player("Troy Dye","Oregon","Line-Backer's", 10000100, true, "The 5th Best" ),
+                    new Player("Isaiah Simmons","Clemson","Line-Backers", 22900300, true, "The Best" ),
+                    new Player("Kenneth Murray","Oklahoma","Line-Backers", 1900590, true, "The 2nd Best" ),
+                    new Player("Zack Baun","Wisconsin","Line-Backers", 18000222, true, "The 3rd Best" ),
+                    new Player("Akeem Davis-Gaither","App St","Line-Backers", 12999999, true, "The 4th Best" ),
+                    new Player("Troy Dye","Oregon","Line-Backers", 10000100, true, "The 5th Best" ),
                     new Player("Jedrick Wills Jr","Alabama","Offensive Tackles", 23000000, true, "The Best" ),
                     new Player("Andrew Thomas","Georgia","Offensive Tackles", 20000000, true, "The 2nd Best" ),
                     new Player("Tristan Wirfs","Iowa","Offensive Tackles", 19400000, true, "The 3rd Best" ),
@@ -130,7 +130,8 @@ namespace project1
 
 
                 //User input for position.
-                Console.WriteLine("\nPlease enter the position you wish to draft from: \n1. Quarterback\n2. Running Back\n3. Wide Receiver"); // Or enter 0 to end draft
+                Console.WriteLine("\nPlease enter the position you wish to draft from: \n1. Quarterback\n2. Running Back\n3. Wide Receiver\n4. Defensive Lineman" +
+                    "\n5. Defensive-Back\n6. Tight Ends\n7. "); // Or enter 0 to end draft
                 int positionNumber = Convert.ToInt32(Console.ReadLine()); //primer
 
                 //// This while statement is what makes the program loop around starting from this point forward
@@ -157,6 +158,12 @@ namespace project1
                             position = "Wide Receiver";
                            
                         }
+
+                        else if (positionNumber == 4)
+                        {
+                            position = "Defensive Lineman";
+                        }
+
                         else
                         {
                             Console.WriteLine("Invalid Selection");
@@ -201,44 +208,74 @@ namespace project1
 
                     Console.Clear();
 
-                        //Logic to determine who user picked
-                        for (var i = playerList.Count - 1; i >= 0; i--)
-                            if (playerList[i].Position.Contains(position) && playerList[i].Rank == userRanking)
+                    //Logic to determine who user picked
+                    for (var i = playerList.Count - 1; i >= 0; i--)
+                    {
+                        if (playerList[i].Position.Contains(position) && playerList[i].Rank == userRanking)
+                        {  
+
+                            if (playerList[i].Availability == true)
                             {
                                 budget = budget - playerList[i].Salary;
                                 long remainingBudget = 95000000 - budget;
 
-                            if (playerList[i].Availability == true)
+                                if (budget >= 0)
                                 {
+                                    playerList[i].Availability = false;
+                                    Console.WriteLine("\nThis is the player you have selected:");
+                                    Console.WriteLine(playerList[i].ToString());
 
-                                    if (budget <= 0)
-                                        {
-                                            Console.WriteLine("You have exceeded your budget! Please select a less expensive player.");
-                                            Console.WriteLine();
+                                    chosenPlayers.Add(playerList[i]);
+                                    //playerList.RemoveAt(i);
+                                    Console.WriteLine("\nYour remaining budget is: " + budget.ToString("c"));
+                                    Console.WriteLine("You have spent " + remainingBudget.ToString("C") + " of your total budget");
 
-                                        }
+                                    //Cost effective logic 
+                                    //for (var x = chosenPlayers.Count - 1; x <= 0; x--)
+                                    //{
+                                    //    if (chosenPlayers[x].Rank == "the best" || chosenPlayers[x].Rank == "the 2nd best" || chosenPlayers[x].Rank == "the 3rd best")
+                                    //    {
+                                            //Need the Salary value and logic to include if the salary is less than 65 million (should it go
+                                            // in the above if statement? can i have multiple ORs and ANDs or should it be an extra If statement?)
 
-                                    else
-                                    {
-                                        playerList[i].Availability = false;
-                                        Console.WriteLine("\nThis is the player you have selected:");
-                                        Console.WriteLine(playerList[i].ToString());
+                                            //if (remainingBudget <= 65000000)
+                                            //{
+                                            //    costEffectiveList.Add(chosenPlayers[i]);
+                                            //    Console.WriteLine("Well done, your choices are cost effective!");
 
-                                        chosenPlayers.Add(playerList[i]);
-                                        //playerList.RemoveAt(i);
-                                        Console.WriteLine("\nYour remaining budget is: " + budget.ToString("c"));
-                                        Console.WriteLine("You have spent " + remainingBudget.ToString("C") + " of your total budget");
+                                            //}
+                                    //    }
+                                    //}
+
                                 }
-                                }
-
 
                                 else
                                 {
-                                    Console.WriteLine("You have already chosen this player. Please choose another Player");
+                                    Console.WriteLine("You have exceeded your budget! Please select a less expensive player.");
+                                    Console.WriteLine();
+                                    //Adjusting the math so that it does not subtract the salary if they're not added to list 
+                                    budget = budget + playerList[i].Salary;
+
                                 }
 
                             }
 
+                            else
+                            {
+                                Console.WriteLine("You have already chosen this player. Please choose another Player");
+                            }
+
+
+                        }
+                    }
+
+                    //else
+                    //{
+
+                    //    Console.WriteLine("You have exceeded your budget! Please select a less expensive player.");
+                    //    Console.WriteLine();
+
+                    //}
                     
                     Console.WriteLine("");
                     
@@ -269,19 +306,25 @@ namespace project1
                 }//End of player selection loop
 
 
-                ////Cost Effective Logic\\\\ 
-                //for (var i = 0; i <= chosenPlayers.Count; i++)
+                //Cost Effective Logic\\
+                //for (var i = chosenPlayers.Count -1; i <= 0; i--)
                 //{
                 //    if (chosenPlayers[i].Rank == "the best" || chosenPlayers[i].Rank == "the 2nd best" || chosenPlayers[i].Rank == "the 3rd best")
                 //    {
-                //       //Need the Salary value and logic to include if the salary is less than 65 million (should it go
-                //       // in the above if statement? can i have multiple ORs and ANDs or should it be an extra If statement?)
-                //        costEffectiveList.Add(chosenPlayers[i]);
+                //        //Need the Salary value and logic to include if the salary is less than 65 million (should it go
+                //        // in the above if statement? can i have multiple ORs and ANDs or should it be an extra If statement?)
+                        
+                //        if (budget <= 65000000)
+                //        {
+                //            costEffectiveList.Add(chosenPlayers[i]);
+                //            Console.WriteLine("Well done, your choices are cost effective!");
+                //            costEffectiveList.ForEach(x => Console.WriteLine(i.ToString()));
+                //        }
                 //    }
                 //}
 
-                //Testing//
-                //costEffectiveList.ForEach(i => Console.WriteLine(i.ToString()));
+                Console.WriteLine("Well done, your choices are cost effective!");
+                costEffectiveList.ForEach(i => Console.WriteLine(i.ToString()));
 
                 //Formatting so it is easier to read 
                 Console.WriteLine("");
