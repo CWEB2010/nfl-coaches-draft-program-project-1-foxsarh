@@ -48,10 +48,6 @@ namespace project1
             List<Player> costEffectiveList;
             ConsoleKey sentinelValue = ConsoleKey.Enter;
             ConsoleKey userInput;
-            long budget = 95000000;
-            long salaries = 95000000;
-            //double draftMoney = 95000000;
-
 
             //Instructions
             Console.WriteLine("Welcome to the NFL Draft!");
@@ -67,6 +63,12 @@ namespace project1
             //Continue program unless they escape
             while (userInput != sentinelValue)
             {
+                // These declarations need to be inside of the while loop so they can reset 
+                long budget = 95000000;
+                long accumSalary = 0;
+                int rankingCount = 0;
+
+
                 Console.Clear();
                 Console.WriteLine("You may pick any combination of players\n");
                 Console.WriteLine("\tHere are the Rules:");
@@ -229,7 +231,7 @@ namespace project1
                     Console.Clear();
 
                     //Logic to determine who user picked
-                    for (var i = playerList.Count - 1; i >= 0; i--)
+                    for (var i = playerList.Count - 1; i >= 0; i--) //Why am I subtracting one here? 
                     {
                         if (playerList[i].Position.Contains(position) && playerList[i].Rank == userRanking)
                         {  
@@ -247,29 +249,10 @@ namespace project1
 
                                     chosenPlayers.Add(playerList[i]);
                                     //playerList.RemoveAt(i);
-                                    Console.WriteLine("\nYour remaining budget is: " + budget.ToString("c"));
+                                    Console.WriteLine("---------------------------------------------------");
+                                    Console.WriteLine("Your remaining budget is: " + budget.ToString("c"));
                                     Console.WriteLine("You have spent " + remainingBudget.ToString("C") + " of your total budget");
-
-                                    //Cost effective logic 
-                                    //for (var x = chosenPlayers.Count - 1; x <= 0; x--)
-                                    //{
-                                    //    if (chosenPlayers[x].Rank == "the best" || chosenPlayers[x].Rank == "the 2nd best" || chosenPlayers[x].Rank == "the 3rd best")
-                                    //    {
-                                            //Need the Salary value and logic to include if the salary is less than 65 million (should it go
-                                            // in the above if statement? can i have multiple ORs and ANDs or should it be an extra If statement?)
-
-                                            //if (remainingBudget <= 65000000)
-                                            //{
-                                            //    costEffectiveList.Add(chosenPlayers[i]);
-                                            //    Console.WriteLine("Well done, your choices are cost effective!");
-
-                                            //}
-                                    //    }
-                                    //}
-                        ///////////////////////// ^^^ instead of all the above, make a for loop outside of this while loop &
-                        ///////// iterate through the chosen players list to create a new variable for cumulative salary and 
-                        ////////////////// remaining budget (so now i'll have more local variables i can use) 
-                        //////////////// then use the logic to add them to the cost effective list 
+                                    Console.WriteLine("---------------------------------------------------");
 
                                 }
 
@@ -293,13 +276,6 @@ namespace project1
                         }
                     }
 
-                    //else
-                    //{
-
-                    //    Console.WriteLine("You have exceeded your budget! Please select a less expensive player.");
-                    //    Console.WriteLine();
-
-                    //}
                     
                     Console.WriteLine("");
                     
@@ -323,7 +299,8 @@ namespace project1
                         });
 
                     //User input for position.
-                    Console.WriteLine("\nPlease enter the position you wish to draft from: \n1. Quarterback\n2. Running Back\n3. Wide Receiver\nOr enter 0 to end draft");
+                    Console.WriteLine("\nPlease enter the position you wish to draft from: \n1. Quarterback\n2. Running Back\n3. Wide Receiver\n4. Defensive Lineman" +
+                    "\n5. Defensive-Back\n6. Tight Ends\n7. Line-Backers\n8. Offensive Tackles\nOr enter 0 to end draft");
                     positionNumber = Convert.ToInt32(Console.ReadLine()); //Primer
                     //Clear Console of previous data for usability 
                     //Console.Clear();
@@ -331,33 +308,35 @@ namespace project1
 
 
                 //Cost Effective Logic\\
-                for (var i = chosenPlayers.Count - 1; i <= 0; i--)
+                for (int i = 0; i < chosenPlayers.Count; i++)
                 {
-                    salaries = salaries - chosenPlayers[i].Salary;
-                    long accumSalary = 95000000 - salaries;
 
-                    if (chosenPlayers[i].Rank == "the best" || chosenPlayers[i].Rank == "the 2nd best" || chosenPlayers[i].Rank == "the 3rd best")
+                    if (chosenPlayers[i].Rank == "The Best" || chosenPlayers[i].Rank == "The 2nd Best" || chosenPlayers[i].Rank == "The 3rd Best")
                     {
-
-                        if (accumSalary <= 65000000)
-                        {
-                            costEffectiveList.Add(chosenPlayers[i]);
-                            Console.WriteLine("\nWell done, your choices are cost effective!");
-                            costEffectiveList.ForEach(x => Console.WriteLine(i.ToString()));
-                        }
+                        accumSalary += chosenPlayers[i].Salary;
+                        rankingCount += 1;
                     }
                 }
 
-                Console.WriteLine("Well done, your choices are cost effective!");
-                costEffectiveList.ForEach(i => Console.WriteLine(i.ToString()));
+                 if (accumSalary <= 65000000 && rankingCount >= 1)
+                  {
+                            
+                        //costEffectiveList.Add(chosenPlayers[i]);
+                        Console.WriteLine("\nWell done, your choices are cost effective!");
+                        //costEffectiveList.ForEach(x => Console.WriteLine(i.ToString()));
+                  }
+                   
+
+                //Console.WriteLine("Well done, your choices are cost effective!");
+                //costEffectiveList.ForEach(i => Console.WriteLine(i.ToString()));
 
 
                 //Show players who have been selected
                 Console.WriteLine("\nThese are the players you have selected");
                 chosenPlayers.ForEach(i => Console.WriteLine(i.ToString()));
 
-                Console.WriteLine("------------------------------------------------------");
-                Console.WriteLine("\n\nTo start a new draft press any key");
+                Console.WriteLine("\n------------------------------------------------------");
+                Console.WriteLine("To start a new draft press any key");
                 Console.WriteLine("To finish the draft and exit the program, press enter.");
                 Console.WriteLine("------------------------------------------------------");
 
