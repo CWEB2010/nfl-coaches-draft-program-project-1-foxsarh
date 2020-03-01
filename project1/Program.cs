@@ -191,7 +191,7 @@ namespace project1
                             Console.WriteLine("Invalid Selection");
                         }
 
-                    //}//end of while loop
+                    //}//end of position while loop
 
                     string userRanking = "";
 
@@ -249,11 +249,10 @@ namespace project1
 
                                     chosenPlayers.Add(playerList[i]);
                                     //playerList.RemoveAt(i);
-                                    Console.WriteLine("---------------------------------------------------");
+                                    Console.WriteLine("\n---------------------------------------------------");
                                     Console.WriteLine("Your remaining budget is: " + budget.ToString("c"));
                                     Console.WriteLine("You have spent " + remainingBudget.ToString("C") + " of your total budget");
                                     Console.WriteLine("---------------------------------------------------");
-
                                 }
 
                                 else
@@ -275,8 +274,7 @@ namespace project1
 
                         }
                     }
-
-                    
+                   
                     Console.WriteLine("");
                     
 
@@ -307,29 +305,26 @@ namespace project1
                 }//End of player selection loop
 
 
-                //Cost Effective Logic\\
+                ////Cost Effective Logic\\\\
                 for (int i = 0; i < chosenPlayers.Count; i++)
                 {
 
                     if (chosenPlayers[i].Rank == "The Best" || chosenPlayers[i].Rank == "The 2nd Best" || chosenPlayers[i].Rank == "The 3rd Best")
                     {
                         accumSalary += chosenPlayers[i].Salary;
-                        rankingCount += 1;
+                        costEffectiveList.Add(chosenPlayers[i]);
+                        //rankingCount += 1;
                     }
                 }
 
-                 if (accumSalary <= 65000000 && rankingCount >= 1)
+                 if (accumSalary <= 65000000 && costEffectiveList.Count >= 1)
                   {
                             
                         //costEffectiveList.Add(chosenPlayers[i]);
                         Console.WriteLine("\nWell done, your choices are cost effective!");
                         //costEffectiveList.ForEach(x => Console.WriteLine(i.ToString()));
                   }
-                   
-
-                //Console.WriteLine("Well done, your choices are cost effective!");
-                //costEffectiveList.ForEach(i => Console.WriteLine(i.ToString()));
-
+                  
 
                 //Show players who have been selected
                 Console.WriteLine("\nThese are the players you have selected");
