@@ -46,7 +46,7 @@ namespace project1
             List<Player> chosenPlayers;
             List<Player> playerList;
             List<Player> costEffectiveList;
-            ConsoleKey sentinelValue = ConsoleKey.Enter;
+            ConsoleKey sentinelValue = ConsoleKey.Escape;
             ConsoleKey userInput;
 
             //Instructions
@@ -54,7 +54,7 @@ namespace project1
 
 
             Console.WriteLine("To begin the draft press any key");
-            Console.WriteLine("To exit the draft press enter");
+            Console.WriteLine("To exit the draft press escape");
 
             //Get user input to begin draft
             userInput = Console.ReadKey().Key;
@@ -312,12 +312,14 @@ namespace project1
                     if (chosenPlayers[i].Rank == "The Best" || chosenPlayers[i].Rank == "The 2nd Best" || chosenPlayers[i].Rank == "The 3rd Best")
                     {
                         accumSalary += chosenPlayers[i].Salary;
+                        //This is basically a counter function that adds one player to this list 
+                        // Each time they meet the above conditions
                         costEffectiveList.Add(chosenPlayers[i]);
                         //rankingCount += 1;
                     }
                 }
 
-                 if (accumSalary <= 65000000 && costEffectiveList.Count >= 1)
+                 if (accumSalary <= 65000000 && costEffectiveList.Count >= 3 && chosenPlayers.Count >= 3)
                   {
                             
                         //costEffectiveList.Add(chosenPlayers[i]);
@@ -330,9 +332,12 @@ namespace project1
                 Console.WriteLine("\nThese are the players you have selected");
                 chosenPlayers.ForEach(i => Console.WriteLine(i.ToString()));
 
+                //Display how much they spent
+                Console.WriteLine("\nYour total amount spent was: " + accumSalary.ToString("C"));
+
                 Console.WriteLine("\n------------------------------------------------------");
                 Console.WriteLine("To start a new draft press any key");
-                Console.WriteLine("To finish the draft and exit the program, press enter.");
+                Console.WriteLine("To finish the draft and exit the program, press escape.");
                 Console.WriteLine("------------------------------------------------------");
 
                 //Get user input from keyboard to start draft over or exit program 
@@ -340,7 +345,6 @@ namespace project1
                 chosenPlayers.Clear();
                 playerList.Clear();
                 costEffectiveList.Clear();
-
             }// End of outer While loop
 
             
