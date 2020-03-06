@@ -29,7 +29,8 @@
      *          If user selects no and budget is under 65 million and all players are within first 3 bests
      *              Print message that states "Cost Effective"
      *          If user selects no and budget is over 65 million
-     *              Display all draft picks        
+     *              Display all draft picks 
+     *              Instructorc Change -- my comment
  */
 
 using System;
